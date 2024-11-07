@@ -9,8 +9,13 @@ def congratulate_user():
 def is_game_over():
     return guessed == WORDS_TO_WIN or errors == ERRORS_TO_LOSE
 
+def game_is_over_message():
+    print("Game is over. You've run out of lives.")
 
 def guess_is_valid(candidate):
+    if candidate in guesses:
+        print("You've already used this word. Try another one. ")
+        return False
     for letter in candidate:
         if letter not in word:
             print(f"You can not use letter {letter}")
@@ -54,3 +59,5 @@ while not is_game_over():
     else:
         errors += 1
         print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
+if errors == ERRORS_TO_LOSE:
+    game_is_over_message()
